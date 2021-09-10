@@ -1,0 +1,64 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <h1>API test coding assignment for cse 4050</h1>
+</head>
+<body>
+
+<p id="demo"><h2>Trying Dr. Turner's API example and doing a few more</h2></p>
+<div id="sunrise"></div>
+<div id="sunset"></div>
+<div id="output"></div>
+<div id="cats"></div>
+<div id="catFacts"></div>
+
+<script>
+fetch("https://api.sunrise-sunset.org/json?lat=55.75697&lng=37.61502&formatted=0")
+.then(response => response.json())
+.then(data => {
+  const x  = new Date(data.results.sunrise);
+  document.getElementById("sunrise").innerHTML = 
+  "Sunrise today in Moscow is " + 
+  x.getHours() + ':' + x.getMinutes() + ' AM';
+});
+
+fetch("https://api.sunrise-sunset.org/json?lat=34.12548&lng=-117.27212&formatted=0")
+.then(response => response.json())
+.then(data => {
+  const d  = new Date(data.results.sunset);
+  document.getElementById("sunset").innerHTML = 
+  "Sunset today in San Bernardino is " + 
+  d.getHours() + ':' + d.getMinutes() + ' PM';
+});
+
+fetch('https://api.github.com/users/eduardomora04')
+.then(response => {
+  console.log(response);
+})
+
+fetch('https://api.github.com/users/eduardomora04/repos')
+.then(response => response.json())
+.then((reposData) => {
+  console.log(reposData);
+  let output = '<h3>My Repos on Github</h3>';
+  document.getElementById('output').innerHTML = output;
+  for( var i = 0; i < reposData.length; i++) {
+    document.getElementById('output').innerHTML +=
+    "<a href=" + reposData[i].html_url + " id='singleRepo' target='_blank'/>" + reposData[i].name + "<br/><br/>";
+  }
+})
+.catch((error) => console.log(error));
+
+let file = "https://catfact.ninja/fact"
+fetch(file)
+.then(response => response.text())
+.then(catFacts => {
+  console.log(catFacts);
+  let cats = '<h3>Random Cat Facts</h3>';
+  document.getElementById('cats').innerHTML = catFacts;
+})
+.catch((error) => console.log(error));
+
+</script>
+</body>
+</html>

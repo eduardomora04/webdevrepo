@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JSON parse and stringify tests</h1>    
+
+<h2>Converting a string using JSON.parse</h2>
+<p id="sample"></p>
+<script>
+const text1 = '{"name":"Eduardo Mora Jr.", "age":"function() {return 25;}", "statement":"I am graduating this december", "statement2":"This is a Json.parse example."}';
+const obj1 = JSON.parse(text1);
+obj1.age = eval("(" + obj1.age + ")");
+document.getElementById("sample").innerHTML = obj1.name + ", " + obj1.age() + ", " + obj1.statement + ", " + obj1.statement2; 
+</script>
+
+<h2>Continuing the use of the Parse function</h2>
+<p id="sample2"></p>
+<script>
+const text2 = '{"summer":"This heat has been rough and I took cse4310 and began work for cse 4010 before the fall semester begins. ", "fall":"I dont know how safe it is to go back to in person learning but I would like to continue online class and save money and gas. ", "winter":"I should graduate by the end of the semester and start applying to jobs with my degree. ", "spring":"Then by next spring I should be saving up for my own apartment by then."}';    
+const obj2 = JSON.parse(text2);
+document.getElementById("sample2").innerHTML = obj2.summer + obj2.fall + obj2.winter + obj2.spring;
+</script>
+
+<h2>This portion will use JSON stringify on an array</h2>
+<p id="sample3"></p>
+<script>
+const arr1 = ["This", "is", "my", "schedule"];
+const myJSON1 = JSON.stringify(arr1);
+document.getElementById("sample3").innerHTML = myJSON1;
+</script>
+
+<p id="sample3A"></p>
+<script>
+const arr2 = ["CSE 5000", "CSE 5700", "CSE 4010", "CSE 4610", "PHYS 2510"];
+const myJSON2 = JSON.stringify(arr2);
+document.getElementById("sample3A").innerHTML = myJSON2;    
+</script>
+
+<h2>This is another use of the JSON stringify</h2>
+<p id="sample4"></p>
+<script>
+const obj = {statement: "I did the first assignment a month ago but Im trying to finish the JSON assignment today on 8/15/2021 and want to get the last project done a few weeks into the beginning of the school semester."};
+const myJSON = JSON.stringify(obj);
+document.getElementById("sample4").innerHTML = myJSON;    
+</script>
+
+</body>
+</html>
