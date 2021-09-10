@@ -38,13 +38,13 @@ fetch('https://api.github.com/users/eduardomora04')
 
 fetch('https://api.github.com/users/eduardomora04/repos')
 .then(response => response.json())
-.then((reposData) => {
-  console.log(reposData);
+.then((repos) => {
+  console.log(repos);
   let output = '<h3>My Repos on Github</h3>';
   document.getElementById('output').innerHTML = output;
-  for( var i = 0; i < reposData.length; i++) {
+  for( var i = 0; i < repos.length; i++) {
     document.getElementById('output').innerHTML +=
-    "<a href=" + reposData[i].html_url + " id='singleRepo' target='_blank'/>" + reposData[i].name + "<br/><br/>";
+    "<a href=" + repos[i].html_url + " id='singleName' target='_blank'/>" + repos[i].name + "<br/><br/>";
   }
 })
 .catch((error) => console.log(error));
